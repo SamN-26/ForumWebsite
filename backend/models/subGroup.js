@@ -9,6 +9,9 @@ const subGroupSchema = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref : 'student'
     },
+    name : {
+        type : String, 
+    }
 })
 
 const SubGroup = mongoose.model('subGroup', subGroupSchema)
