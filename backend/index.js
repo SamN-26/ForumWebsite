@@ -1,18 +1,25 @@
-const express = require('express')
-const env = require('dotenv/config')
 const {connectToMongo} = require('./connect.js')
-
-const app = express()
 
 //connect mongoDB
 connectToMongo()
 .then(() => {console.log('MongoDB connected')})
 .catch((err) => {console.log('Error : ', err)})
 
-//Middlewares
+const express = require('express')
+const env = require('dotenv/config')
 
+const app = express()
+
+//Middlewares
+app.use(express.urlencoded({extended : true}))
 
 //Routes
+const studentRouter = require('./routes/students')
+const subGroupRouter = require('./routes/subGroup')
+
+app.use('/student', studentRouter)
+app.use('/subgroup', subGroupRouter)
+
 app.get('/', (req, res) =>{
     res.send('Hello')
 })
