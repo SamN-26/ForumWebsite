@@ -16,9 +16,11 @@ app.use(express.urlencoded({extended : true}))
 //Routes
 const studentRouter = require('./routes/students')
 const subGroupRouter = require('./routes/subGroup')
+const lectureGroupRouter = require('./routes/lectureGroup')
 
 app.use('/student', studentRouter)
 app.use('/subgroup', subGroupRouter)
+app.use('/lecturegroup', lectureGroupRouter)
 
 app.get('/', (req, res) =>{
     res.send('Hello')

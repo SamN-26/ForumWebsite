@@ -1,10 +1,15 @@
 const mongoose = require('mongoose')
+const helper = require('../helper')
 
 const subGroupSchema = new mongoose.Schema({
-    students : [{
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'student'
-    }],
+    students : {
+        type : [mongoose.Schema.Types.ObjectId],
+        ref : 'student',
+        validate : {
+            validator : helper.ValidateuniqueValueArray,
+            message : 'Students already Exists',
+        }
+    },
     gr : {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'student'

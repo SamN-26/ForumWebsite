@@ -1,7 +1,10 @@
 const mongoose = require('mongoose')
 const Student = require('../models/students')
+const SubGroup = require('../models/subGroup')
 
 const postStudentInfo = async (req, res) =>{
+    // const subGroup = SubGroup.find({name : req.body.subgroup})
+    // console.log(subGroup._id)
     student = new Student({
         name : req.body.name,
         email : req.body.email,
@@ -16,7 +19,7 @@ const postStudentInfo = async (req, res) =>{
     .catch(err =>{
         console.log(err)
     })
-    return res.send('Posted')
+    return res.send('Student Posted')
 }
 
 const getAllStudentInfo = async (req, res) =>{

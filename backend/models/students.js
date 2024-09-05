@@ -17,6 +17,10 @@ const studentSchema = new mongoose.Schema({
         type : String,
         //required : true,
     },
+    subgroup : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'subGroup'
+    }
 })
 
 const Student = mongoose.model('student', studentSchema);

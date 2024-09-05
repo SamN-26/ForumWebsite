@@ -12,4 +12,11 @@ router.route('/')
     return res.send('Get Subgroup')
 })
 
+router.route('/addstudents')
+.post(subGroupHelper.addStudentsToSubgroup)
+
+
+router.route('/testroute')
+.post(subGroupHelper.testRoute)
+
 module.exports = router
