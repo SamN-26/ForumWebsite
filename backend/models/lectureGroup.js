@@ -4,17 +4,16 @@ const lectureGroupSchema = new mongoose.Schema({
     id : {
         type : Number,
     },
-    contents : [{
+    members : [{
         subGroup : {
             type : mongoose.Schema.Types.ObjectId,
             ref : 'subGroup',
         },
-        students : [{
-            type : mongoose.Schema.Types.ObjectId,
+        students : {
+            type : [mongoose.Schema.Types.ObjectId],
             ref : 'students'
-        }
-            
-        ]
+        },
+        _id : false,
     }],
     cr : {
         type : mongoose.Schema.Types.ObjectId,

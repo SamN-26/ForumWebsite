@@ -7,28 +7,36 @@ const postLectureGroup = async (req, res) =>{
     const range = req.body.name.split('-')
     const prefix = range[0].match(/[a-zA-Z]+/)[0];  // "CO"
     const startNum = parseInt(range[0].match(/\d+/)[0], 10);  // 6
-    // const endNum = parseInt(range[1].match(/\d+/)[0], 10);    // 10
+    const endNum = parseInt(range[1].match(/\d+/)[0], 10);    // 10
 
-    // Generate the sequence of strings
-    // const result = [];
-    // for (let i = startNum; i <= endNum; i++) {
-    //     result.push(`${prefix}${i}`);
-    // }
-    // const groups = await SubGroup.find({ name : {$in : result}})
-
-    // groupsId = groups.map((group) => {
-    //     return group._id;
-    // })
-    // studentsId = groups.map((group) =>{
-    //     return group.students
-    // })
+    //creating subgroup
     const lectureGroup = new LectureGroup({
         name : req.body.name,
         branch : req.body.branch,
         passoutYear : req.body.year,
         id : startNum,
     })
-    console.log(lectureGroup)
+
+    // Generate the sequence of strings
+    const result = [];
+    for (let i = startNum; i <= endNum; i++) {
+        result.push(`${prefix}${i}`);
+    }
+
+    //extracting groups if any
+    const groups = await SubGroup.find({ name : {$in : result}})
+
+    console.log(groups)
+    for(let i = 0; i<groups.length; i++)
+    {
+        lectureGroup.members.push({
+            subGroup : groups[i]._id,
+            students : groups[i].students,
+        })
+    }
+    // console.log(lectureGroup)
+
+    //saving the lecture group
     lectureGroup.save()
     .then(obj => {
         console.log('Lecture Group Posted : ', obj)
