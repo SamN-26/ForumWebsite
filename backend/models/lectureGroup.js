@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const helper = require('../helper')
 
 const lectureGroupSchema = new mongoose.Schema({
     id : {
@@ -14,6 +15,10 @@ const lectureGroupSchema = new mongoose.Schema({
             ref : 'students'
         },
         _id : false,
+        // validate :{
+        //     validator : helper.ValidateuniqueValueArray,
+        //     message : 'Entity already exists',
+        // }
     }],
     cr : {
         type : mongoose.Schema.Types.ObjectId,

@@ -50,15 +50,30 @@ const postLectureGroup = async (req, res) =>{
 
 const addSubgroupToLecturegroup = async (req, res) =>{
     console.log(req.body)
-    const subgroup = await SubGroup.find({name : req.body.name})
-    console.log(subgroup)
-    if(subgroup)
+    const subGroup = await SubGroup.findOne({name : req.body.name})
+    if(!subGroup)
         return res.send("Subgroup not found")
-    const lecturegroup = await LectureGroup.find({id : req.body.LGid})
-    console.log(lecturegroup)
-    if(!lecturegroup)
+    const lectureGroup = await LectureGroup.findOne({id : req.body.LGid})
+    if(!lectureGroup)
         return res.send("Invalid Lecture Group id")
-    console.log(lecturegroup.subGroup)
+
+    if(lectureGroup.members.some(obj => obj.subGroup.equals(subGroup._id)))
+        return res.send('Subgroup already exists');
+    if(lectureGroup.members.length == 0)
+        lectureGroup.members = []
+    lectureGroup.members.push({
+        subGroup : subGroup._id,
+        students : subGroup.students,
+    })
+    
+    //saving lecture group
+    lectureGroup.save()
+    .then(obj =>{
+        console.log('Subgroup added ', obj)
+    })
+    .catch(err =>{
+        console.log('Error ', err)
+    })
     return res.send("Subgroup Added")
 }
 
