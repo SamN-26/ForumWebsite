@@ -11,7 +11,7 @@ const postQuery = async (req, res) =>{
     const loc = reqData.postedIn.loc
     const grp = reqData.postedIn.grp
     const grpId = loc == 0 ? 
-    await SubGroup.findOne({name : grp})._id :
+    await SubGroup.findOne({name : grp}) :
     await LectureGroup.findOne({id : Number(grp)});
     console.log(grpId._id)
     const query = new Query({
