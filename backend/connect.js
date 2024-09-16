@@ -3,7 +3,18 @@ const uri = process.env.mongoURL;
 const mongoose = require('mongoose')
 
 async function connectToMongo() {
-  return mongoose.connect(uri)  
+  console.log('Attempting connection to mongo')
+  return mongoose.connect(uri)
 }
 
-module.exports = {connectToMongo}
+async function attemptConnection(){
+  connectToMongo()
+  .then( () => {console.log('Connected to Mongo')})
+  .catch((err) => {
+  console.log('Error on Connecting to mongo')
+  console.log('Retrying ...')
+  setTimeout(attemptConnection, 1000);
+  }) 
+}
+
+module.exports = {attemptConnection}

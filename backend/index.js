@@ -1,9 +1,7 @@
-const {connectToMongo} = require('./connect.js')
+const {attemptConnection} = require('./connect.js')
 
 //connect mongoDB
-connectToMongo()
-.then(() => {console.log('MongoDB connected')})
-.catch((err) => {console.log('Error : ', err)})
+attemptConnection()
 
 const express = require('express')
 const env = require('dotenv/config')
@@ -17,10 +15,12 @@ app.use(express.urlencoded({extended : true}))
 const studentRouter = require('./routes/students')
 const subGroupRouter = require('./routes/subGroup')
 const lectureGroupRouter = require('./routes/lectureGroup')
+const queryRouter = require('./routes/queries')
 
 app.use('/student', studentRouter)
 app.use('/subgroup', subGroupRouter)
 app.use('/lecturegroup', lectureGroupRouter)
+app.use('/query', queryRouter)
 
 app.get('/', (req, res) =>{
     res.send('Hello')
