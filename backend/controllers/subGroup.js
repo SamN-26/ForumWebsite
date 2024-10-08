@@ -1,6 +1,7 @@
 const SubGroup = require('../models/subGroup')
 const Student = require('../models/students')
 
+//posting a new Subgroup 
 const postSubGroupInfo = async (req, res) =>{
 
     //extracting students to be added if any
@@ -41,6 +42,7 @@ const postSubGroupInfo = async (req, res) =>{
     return res.send('Subgroup posted')
 }
 
+//manually adding students to a subgroup
 const addStudentsToSubgroup = async (req, res) =>{
     
     //extract student 

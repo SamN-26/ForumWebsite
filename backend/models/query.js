@@ -12,7 +12,8 @@ const querySchema = new mongoose.Schema({
             },
             grpId : {
                 type : mongoose.Schema.Types.ObjectId,
-            }
+            },
+            _id : false
         }
     },
     content : {
@@ -30,6 +31,7 @@ const querySchema = new mongoose.Schema({
             comments : [{
                 type : mongoose.Schema.Types.ObjectId,
                 ref : 'comments',
+                unique : true,
             }]
         }
     },

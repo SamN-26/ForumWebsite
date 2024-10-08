@@ -22,7 +22,7 @@ const lectureGroupSchema = new mongoose.Schema({
     }],
     cr : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : 'student'
+        ref : 'students'
     },
     name : {
         type : String, 

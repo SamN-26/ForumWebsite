@@ -1,7 +1,7 @@
 
 const ValidateuniqueValueArray = function(value)
 {
-    return Array.isArray(value) && new Set(value).size == value.length;
+    return Array.isArray(value) && (value.length === 0 || new Set(value).size === value.length);
 }
 
-module.exports = {ValidateuniqueValueArray}
+module.exports = {ValidateuniqueValueArray,}

@@ -1,6 +1,7 @@
 const LectureGroup = require('../models/lectureGroup')
 const SubGroup = require('../models/subGroup')
 
+//posting the Lecture Group
 const postLectureGroup = async (req, res) =>{
     // console.log(req.body)
 
@@ -48,6 +49,7 @@ const postLectureGroup = async (req, res) =>{
     return res.send('Lecture Group Posted')
 }
 
+//manually adding a new subgroup to the lecture Group
 const addSubgroupToLecturegroup = async (req, res) =>{
     console.log(req.body)
     const subGroup = await SubGroup.findOne({name : req.body.name})

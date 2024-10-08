@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Student = require('../models/students')
 const SubGroup = require('../models/subGroup')
 
+//function to post a new Student
 const postStudentInfo = async (req, res) =>{
     // const subGroup = SubGroup.find({name : req.body.subgroup})
     // console.log(subGroup._id)
@@ -22,6 +23,7 @@ const postStudentInfo = async (req, res) =>{
     return res.send('Student Posted')
 }
 
+//function to return info of all students
 const getAllStudentInfo = async (req, res) =>{
     const allStudents = await Student.find()
     console.log(allStudents)

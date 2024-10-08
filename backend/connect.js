@@ -3,7 +3,7 @@ const uri = process.env.mongoURL;
 const mongoose = require('mongoose')
 
 async function connectToMongo() {
-  console.log('Attempting connection to mongo')
+  console.log('Attempting connection to mongo...')
   return mongoose.connect(uri)
 }
 
