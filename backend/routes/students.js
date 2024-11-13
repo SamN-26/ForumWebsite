@@ -7,4 +7,7 @@ router.route('/')
 .post(studentHelper.postStudentInfo)
 .get(studentHelper.getAllStudentInfo)
 
+router.route('/:rollno')
+.get(studentHelper.getStudentFromRollNo)
+
 module.exports = router;

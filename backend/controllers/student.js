@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Student = require('../models/students')
 const SubGroup = require('../models/subGroup')
+const AuthService = require('../service/auth')
 
 //function to post a new Student
 const postStudentInfo = async (req, res) =>{
@@ -12,7 +13,6 @@ const postStudentInfo = async (req, res) =>{
         rollNo : req.body.rollNo,
         password : req.body.password,
     })
-    console.log(student)
     student.save()
     .then( obj => {
         console.log('Student Inserted : ', obj)
@@ -20,6 +20,13 @@ const postStudentInfo = async (req, res) =>{
     .catch(err =>{
         console.log(err)
     })
+    const payload = {
+        email : student.email,
+        password : student.password,
+        role : 'Student',
+    }
+    const token = AuthService.setUser(payload)
+    res.cookie('token', token);
     return res.send('Student Posted')
 }
 
@@ -29,4 +36,12 @@ const getAllStudentInfo = async (req, res) =>{
     console.log(allStudents)
     return res.json(allStudents)
 }
-module.exports = {postStudentInfo, getAllStudentInfo}
+
+const getStudentFromRollNo = async(req, res) =>{
+    console.log(req.params.rollno)
+    const targetStudent = await Student.findOne({rollNo : req.params.rollno})
+    console.log(targetStudent)
+    return res.json(targetStudent)
+}
+
+module.exports = {postStudentInfo, getAllStudentInfo, getStudentFromRollNo}

@@ -1,15 +1,20 @@
 const {attemptConnection} = require('./connect.js')
-
 //connect mongoDB
 attemptConnection()
 
+//imports
 const express = require('express')
 const env = require('dotenv/config')
+const cookieParser = require('cookie-parser')
+const Authmiddlewares = require('./middlewares/auth.js')
 
 const app = express()
 
 //Middlewares
 app.use(express.urlencoded({extended : true}))
+app.use(cookieParser())
+app.use(Authmiddlewares.checkForAuthentication)
+
 //app.use(Authentication.checkforA)
 
 //Routes

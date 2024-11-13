@@ -5,10 +5,10 @@ const subGroupSchema = new mongoose.Schema({
     students : {
         type : [mongoose.Schema.Types.ObjectId],
         ref : 'student',
-        validate : {
-            validator : helper.ValidateuniqueValueArray,
-            message : 'Students already Exists',
-        }
+        // validate : {
+        //     validator : helper.ValidateuniqueValueArray,
+        //     message : 'Students already Exists',
+        // }
     },
     gr : {
         type : mongoose.Schema.Types.ObjectId,

@@ -30,10 +30,11 @@ const postLectureGroup = async (req, res) =>{
     console.log(groups)
     for(let i = 0; i<groups.length; i++)
     {
-        lectureGroup.members.push({
-            subGroup : groups[i]._id,
-            students : groups[i].students,
-        })
+        lectureGroup.subGroup.push(groups[i]._id)
+        // lectureGroup.members.push({
+        //     subGroup : groups[i]._id,
+        //     students : groups[i].students,
+        // })
     }
     // console.log(lectureGroup)
 
@@ -59,14 +60,18 @@ const addSubgroupToLecturegroup = async (req, res) =>{
     if(!lectureGroup)
         return res.send("Invalid Lecture Group id")
 
-    if(lectureGroup.members.some(obj => obj.subGroup.equals(subGroup._id)))
-        return res.send('Subgroup already exists');
-    if(lectureGroup.members.length == 0)
-        lectureGroup.members = []
-    lectureGroup.members.push({
-        subGroup : subGroup._id,
-        students : subGroup.students,
-    })
+    if(lectureGroup.subGroup.includes(subGroup._id))
+        return res.send('SubGroup already exists')
+    // if(lectureGroup.members.some(obj => obj.subGroup.equals(subGroup._id)))
+    //     return res.send('Subgroup already exists');
+    if(lectureGroup.subGroup.length == 0)
+        lectureGroup.subGroup = []
+    lectureGroup.subGroup.push(subGroup._id)
+    console.log(lectureGroup, subGroup)
+    // lectureGroup.members.push({
+    //     subGroup : subGroup._id,
+    //     students : subGroup.students,
+    // })
     
     //saving lecture group
     lectureGroup.save()
