@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture Group</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/announcements-query.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Left Sidebar -->
+    <nav class="sidebar">
+      <div class="user-info">
+        <h3>Branch: <span id="branch">Computer Science</span></h3>
+        <h4>Name: <span id="name"><%= user.name %></span></h4>
+        <p>Roll No: <span id="rollNo"><%= user.rollNo %></span></p>
+        <p>Lecture Group: <span id="lectureGroup"><%= user.lecturegroup %></span></p>
+        <p>Subgroup: <span id="subGroup"><%= user.subgroup %></span></p>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/lecturegroup">Announcements</a></li>
+        <li><a href="/lecturegroup/queries">Queries</a></li>
+        <li><a href="/lecturegroup/post-query">Post a Query</a></li>
+        <% if (user.cr) { %>
+          <li><a href="/lecturegroup/post-announcement" class="btn btn-primary">Post Announcement</a></li>
+        <% } %>
+      </ul>
+    </nav>
+
+    <!-- Placeholder for future content -->
+    <main class="main-content">
+      <section class="announcements-query">
+        <h2>Announcements</h2>
+        <% if (announcements && announcements.length > 0) { %>
+          <% announcements.forEach(announcement => { %>
+            <div class="announcement-query-card">
+              <div class="card-header">
+                <h3><%= announcement.content.title %></h3>
+                <p class="author-info">
+                  Posted by: <strong><%= announcement.postedBy %></strong> 
+                </p>
+              </div>
+              <div class="card-body">
+                <p><%= announcement.content.body %></p>
+              </div>
+              <div class="card-footer">
+                <% if (announcement.postedBy === user.rollNo || user.gr) { %>
+                  <button class="delete-btn" data-id="<%= announcement._id %>">
+                    🗑️ Delete
+                  </button>
+                <% } %>
+              </div>
+            </div>
+        <% })} else { %> 
+          <p>No announcements available at the moment. Check back later!</p>
+        <% } %>
+      </section>
+    </main>
+  </div>
+
+  <!-- <script src="/js/scripts.js"></script> -->
+  <script src="/js/announcement.js"></script>
+</body>
+</html>

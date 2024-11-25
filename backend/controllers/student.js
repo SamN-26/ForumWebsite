@@ -12,6 +12,8 @@ const postStudentInfo = async (req, res) =>{
         email : req.body.email,
         rollNo : req.body.rollNo,
         password : req.body.password,
+        subgroup : req.body.subgroup,
+        lecturegroup : req.body.lecturegroup,
     })
     student.save()
     .then( obj => {
@@ -20,14 +22,19 @@ const postStudentInfo = async (req, res) =>{
     .catch(err =>{
         console.log(err)
     })
-    const payload = {
-        email : student.email,
-        password : student.password,
-        role : 'Student',
-    }
-    const token = AuthService.setUser(payload)
-    res.cookie('token', token);
-    return res.send('Student Posted')
+    return res.send("Done")
+}
+
+const handleStudentLogin = async (req, res) =>{
+    console.log(req.body)
+    const student = await Student.findOne({rollNo : req.body.rollNo, password : req.body.password})
+    if(!student)
+        return res.redirect('/login')
+    else 
+        res.cookie('token', AuthService.setUser({
+            email : student.email,
+        }))
+    return res.redirect('/')
 }
 
 //function to return info of all students
@@ -44,4 +51,15 @@ const getStudentFromRollNo = async(req, res) =>{
     return res.json(targetStudent)
 }
 
-module.exports = {postStudentInfo, getAllStudentInfo, getStudentFromRollNo}
+const updateStudentDetails = async (req, res) =>{
+    console.log(req.body)
+    const student = await Student.updateOne(
+        {rollNo : req.body.studentID},
+        { $set : {name : req.body.studentName, subgroup : req.body.studentGroup}},
+        {new : true}
+    )
+    console.log(student)
+    return res.json({status : 1})
+}
+
+module.exports = {updateStudentDetails, handleStudentLogin, postStudentInfo, getAllStudentInfo, getStudentFromRollNo}

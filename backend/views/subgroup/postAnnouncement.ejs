@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SubGroup - Post a Announcement</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/post-query.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Left Sidebar -->
+    <nav class="sidebar">
+      <div class="user-info">
+        <h3>Branch: <span id="branch">Computer Science</span></h3>
+        <h4>Name: <span id="name"><%= user.name%></span></h1>
+        <p>Roll No: <span id="rollNo"><%= user.rollNo%></span></p>
+        <p>Lecture Group: <span id="lectureGroup"><%= user.lecturegroup %></span></p>
+        <p>Subgroup: <span id="subGroup"><%= user.subgroup %></span></p>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/subgroup">Announcements</a></li>
+        <li><a href="/subgroup/queries">Queries</a></li>
+        <li><a href="/subgroup/post-query">Post a Query</a></li>
+        <% if (user.cr) { %>
+            <li><a href="/subgroup/post-announcement" class="btn btn-primary">Post Announcement</a></li>
+        <% } %>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+       <!-- Alert Section -->
+       <% if (typeof status !== 'undefined' && status === 1) { %>
+        <div class="alert success", id="successAlert">
+          <p>Your announcement has been posted successfully!</p>
+        </div>
+      <% } %>
+
+      <section class="post-query">
+        <h2>Post a Announcement</h2>
+        <form action="/subgroup/post-announcement" method="POST" class="query-form">
+          <div class="form-group">
+            <label for="title">Announcement Title</label>
+            <input type="text" id="title" name="title" placeholder="Enter your announcement title" required>
+          </div>
+          <div class="form-group">
+            <label for="body">Announcement Details</label>
+            <textarea id="body" name="body" rows="6" placeholder="Describe your announcement in detail" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Submit Announcement</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('successAlert').onclick = function () {
+      this.style.opacity = '0';
+      setTimeout(() => this.remove(), 500);
+    };
+  </script>
+  <!-- <script src="/js/scripts.js"></script> -->
+</body>
+</html>

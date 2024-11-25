@@ -1,0 +1,103 @@
+/* Styling for the Post a Query Page */
+.post-query {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .post-query h2 {
+    font-size: 2rem;
+    color: #34495e;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .query-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  label {
+    font-size: 1.2rem;
+    color: #2c3e50;
+  }
+  
+  input[type="text"],
+  textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    background: #f9fbfc;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type="text"]:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #1abc9c;
+  }
+  
+  textarea {
+    resize: none;
+  }
+  
+  .submit-btn {
+    background: linear-gradient(135deg, #1abc9c, #16a085);
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .submit-btn:hover {
+    background: #0e6655;
+    transform: translateY(-3px);
+  }
+  
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .query-form {
+      gap: 15px;
+    }
+  
+    .submit-btn {
+      font-size: 1rem;
+    }
+  }
+
+  .alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    transition: opacity 0.5s ease; /* Smooth fade-out transition */
+  }
+  
+  .alert.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+  }
+  
+  

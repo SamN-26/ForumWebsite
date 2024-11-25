@@ -1,6 +1,7 @@
 const express = require('express')
 const studentHelper = require('../controllers/student')
 
+
 const router = express.Router()
 
 router.route('/')
@@ -9,5 +10,6 @@ router.route('/')
 
 router.route('/:rollno')
 .get(studentHelper.getStudentFromRollNo)
+.post(studentHelper.updateStudentDetails)
 
 module.exports = router;

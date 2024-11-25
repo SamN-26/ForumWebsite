@@ -6,31 +6,11 @@ const lectureGroupSchema = new mongoose.Schema({
         type : Number,
     },
     subGroup : {
-        type : [mongoose.Schema.Types.ObjectId],
-        ref : 'subGroup',
-        // validate : {
-        //     validator : helper.ValidateuniqueValueArray,
-        //     message : 'Subgroup already Exists',
-        // }
+        type : [String],       
     },
-    // members : [{
-    //     subGroup : {
-    //         type : mongoose.Schema.Types.ObjectId,
-    //         ref : 'subGroup',
-    //     },
-    //     students : {
-    //         type : [mongoose.Schema.Types.ObjectId],
-    //         ref : 'students'
-    //     },
-    //     _id : false,
-    //     // validate :{
-    //     //     validator : helper.ValidateuniqueValueArray,
-    //     //     message : 'Entity already exists',
-    //     // }
-    // }],
+
     cr : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'students'
+        type : String,
     },
     name : {
         type : String, 
