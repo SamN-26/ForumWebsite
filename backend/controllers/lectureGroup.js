@@ -4,6 +4,7 @@ const Query = require('../models/query')
 const Announcement = require('../models/announcements')
 const helper = require('../helper')
 const Student = require('../models/students')
+const lectureGroup = require('../models/lectureGroup')
 
 //posting the Lecture Group
 // const postLectureGroup = async (req, res) =>{
@@ -101,7 +102,8 @@ const postQueryLecture = async (req, res) =>{
         return res.send('Student Not found')
 
     const grpName = student.lecturegroup
-    if(!await helper.lecturegroupExistCheck(grpName))
+    const lecturegroup = await LectureGroup.findOne({name : student.lecturegroup})
+    if(!lecturegroup)
         return res.send('Lecture Group Not Found')
 
     //creating a new Query instance
@@ -127,7 +129,10 @@ const postQueryLecture = async (req, res) =>{
         console.log('Error in posting Query',err)
         return res.render('lecturegroup/PostQuery', {user : student, status : 0})
     })
-
+    console.log(lecturegroup)
+    if(lecturegroup.cr == student.rollNo)
+        student.cr = 1
+    console.log(student)
     return res.render('lecturegroup/PostQuery', {status : 1, user : student})
 }
 
