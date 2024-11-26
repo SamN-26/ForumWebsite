@@ -87,12 +87,12 @@ const postQuerySubgroup = async (req, res) =>{
     const student  = await Student.findOne({email : req.user.email});
     //checking whether student exists
     if(!student)
-        return res.render('subgroup/postQuery', { message : 'Student Not found', status : 2})
+        return res.redirect('/subgroup/post-query') //{ message : 'Student Not found', status : 2}
 
     const grpName = student.subgroup
     const subgroup = await SubGroup.findOne({name : grpName})
     if(!subgroup)
-        return res.json('subgroup/postQuery', {message : 'Subgroup Group Not Found', status : 3})
+        return res.redirect('/subgroup/post-query') //{message : 'Subgroup Group Not Found', status : 3}
 
     //creating a new Query instance
     const query = new Query({
@@ -115,11 +115,11 @@ const postQuerySubgroup = async (req, res) =>{
     })
     .catch( (err)=> {
         console.log('Error in posting Query',err)
-        return res.render('subgroup/postQuery', {user : student, status : 0})
+        return res.redirect('/subgroup/post-query') //, {user : student, status : 0})
     })
     student.gr = 1
 
-    return res.render('subgroup/postQuery', {status : 1, user : student})
+    return res.redirect('/subgroup/post-query') //, {status : 1, user : student}
 }
 
 const postAnnouncementSubgroup = async (req, res) =>{
