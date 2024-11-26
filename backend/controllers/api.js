@@ -27,7 +27,7 @@ const updateSubgroupGr = async (req, res) =>{
     const subgroup = await Subgroup.findOne({name : req.params.name})
     if(!subgroup)
         return res.json({status : 2, message : "Subgroup Not Found"})
-    const student = await Student.findOne({rollNo : req.body.gr})
+    const student = await Student.findOne({rollNo : req.body.gr, subgroup : subgroup.name})
     if(!student)
         return res.json({status : 3, message : "Student not Found"})
     const updatedSubgroup = await Subgroup.updateOne(
@@ -62,7 +62,7 @@ const updateLecturegroupCr = async (req, res) =>{
     const lecturegroup = await Lecturegroup.findOne({name : req.params.name})
     if(!lecturegroup)
         return res.json({status : 2, message : "Lecture group Not Found"})
-    const student = await Student.findOne({rollNo : req.body.cr})
+    const student = await Student.findOne({rollNo : req.body.cr, lecturegroup : lecturegroup.name})
     if(!student)
         return res.json({status : 3, message : "Student not Found"})
     const updatedLecturegroup = await Lecturegroup.updateOne(

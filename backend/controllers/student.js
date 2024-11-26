@@ -59,9 +59,12 @@ const updateStudentDetails = async (req, res) =>{
     const targetOldSubgroup = await SubGroup.findOne({name : targetstudent.subgroup})
     newStudentArray = targetOldSubgroup.students
     newStudentArray = newStudentArray.filter(item => item != (targetstudent.rollNo))
+    gr = targetOldSubgroup.gr
+    if(targetOldSubgroup.gr && targetOldSubgroup.gr == targetstudent.rollNo)
+        gr = null
     const oldSubgroup = await SubGroup.updateOne(
         {name : targetstudent.subgroup},
-        { $set : {students : newStudentArray}},
+        { $set : {students : newStudentArray, gr : gr}},
         {new : true}
     )
     const student = await Student.updateOne(
