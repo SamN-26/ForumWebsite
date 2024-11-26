@@ -1,5 +1,7 @@
 const apiPass = 'api123'
 
+
+
 //handling query upvotes
 document.addEventListener('DOMContentLoaded', () => {
   // Add event listeners for both upvote and remove upvote actions
