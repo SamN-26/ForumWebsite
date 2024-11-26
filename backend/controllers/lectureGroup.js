@@ -100,12 +100,12 @@ const postQueryLecture = async (req, res) =>{
     const student  = await Student.findOne({email : req.user.email});
     //checking whether student exists
     if(!student)
-        return res.send('Student Not found')
+        return res.render('lecturegroup/postQuery.ejs')
 
     const grpName = student.lecturegroup
     const lecturegroup = await LectureGroup.findOne({name : student.lecturegroup})
     if(!lecturegroup)
-        return res.send('Lecture Group Not Found')
+        return res.render('lecturegroup/postQuery.ejs')
 
     //creating a new Query instance
     const query = new Query({
@@ -128,13 +128,13 @@ const postQueryLecture = async (req, res) =>{
     })
     .catch( (err)=> {
         console.log('Error in posting Query',err)
-        return res.render('/lecturegroup.post-query')
+        return res.render('/lecturegroup/post-query')
     })
     console.log(lecturegroup)
     if(lecturegroup.cr == student.rollNo)
         student.cr = 1
     console.log(student)
-    return res.redirect('/lecturegroup.post-query')
+    return res.redirect('/lecturegroup/post-query')
 }
 
 const postAnnouncementLecture = async (req, res) =>{
