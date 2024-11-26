@@ -58,6 +58,7 @@ const lectureGroup = require('../models/lectureGroup')
 // }
 
 //manually adding a new subgroup to the lecture Group
+
 const addSubgroupToLecturegroup = async (req, res) =>{
 
     if(!(await helper.subgroupExistCheck(req.body.name)))
@@ -133,7 +134,7 @@ const postQueryLecture = async (req, res) =>{
     if(lecturegroup.cr == student.rollNo)
         student.cr = 1
     console.log(student)
-    return res.render('lecturegroup/PostQuery', {status : 1, user : student})
+    return res.redirect('/lecturegroup/post-query', {status : 1, user : student})
 }
 
 const postAnnouncementLecture = async (req, res) =>{
