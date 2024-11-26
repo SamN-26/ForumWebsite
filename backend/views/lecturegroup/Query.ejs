@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';">
   <title>Lecture Group</title>
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/comments.css">
@@ -57,7 +58,7 @@
                 <!-- Comment Button -->
                 <button class="comment-btn" data-id="<%= query._id %>">💬 Comments</button>
                 <span class="comments"><%= query.content.comments.length %> Comments</span>
-                <% if (query.postedBy === user.rollNo || user.gr) { %>
+                <% if (query.postedBy === user.rollNo || user.cr) { %>
                   <button class="delete-btn" data-id="<%= query._id %>">
                     🗑️ Delete
                   </button>
