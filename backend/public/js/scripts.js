@@ -1,11 +1,11 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const role = sessionStorage.getItem("role") || "student"; // Default to student for now
+// document.addEventListener("DOMContentLoaded", () => {
+//     const role = sessionStorage.getItem("role") || "student"; // Default to student for now
     
-    // Dynamically show CR functionalities
-    if (role === "cr") {
-      document.getElementById("createPost").style.display = "block";
-    }
-  });
+//     // Dynamically show CR functionalities
+//     if (role === "cr") {
+//       document.getElementById("createPost").style.display = "block";
+//     }
+//   });
 
 
   //chats

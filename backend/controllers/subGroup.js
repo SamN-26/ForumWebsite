@@ -117,6 +117,7 @@ const postQuerySubgroup = async (req, res) =>{
         console.log('Error in posting Query',err)
         return res.render('subgroup/postQuery', {user : student, status : 0})
     })
+    student.gr = 1
 
     return res.render('subgroup/postQuery', {status : 1, user : student})
 }
