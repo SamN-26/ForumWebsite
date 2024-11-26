@@ -8,8 +8,9 @@ const Announcements = require('../models/announcements')
 
 const router = express.Router()
 
+//.post(lectureGroupHelper.postLectureGroup)
+
 router.route('/')
-.post(lectureGroupHelper.postLectureGroup)
 .get( async (req, res) =>{
     const student = await Student.findOne({email : req.user.email})
     const lecturegroup = await lectureGroup.findOne({name : student.lecturegroup})

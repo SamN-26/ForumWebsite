@@ -6,56 +6,55 @@ const helper = require('../helper')
 const Student = require('../models/students')
 
 //posting the Lecture Group
-const postLectureGroup = async (req, res) =>{
-    // console.log(req.body)
+// const postLectureGroup = async (req, res) =>{
+//     // console.log(req.body)
 
-    const range = req.body.name.split('-')
-    const prefix = range[0].match(/[a-zA-Z]+/)[0];  // "CO"
-    const startNum = parseInt(range[0].match(/\d+/)[0], 10);  // 6
-    const endNum = parseInt(range[1].match(/\d+/)[0], 10);    // 10
+//     const range = req.body.name.split('-')
+//     const prefix = range[0].match(/[a-zA-Z]+/)[0];  // "CO"
+//     const startNum = parseInt(range[0].match(/\d+/)[0], 10);  // 6
+//     const endNum = parseInt(range[1].match(/\d+/)[0], 10);    // 10
 
-    //creating subgroup
-    const lectureGroup = new LectureGroup({
-        name : req.body.name,
-        branch : req.body.branch,
-        passoutYear : req.body.year,
-        id : startNum,
-    })
+//     //creating subgroup
+//     const lectureGroup = new LectureGroup({
+//         name : req.body.name,
+//         branch : req.body.branch,
+//         id : startNum,
+//     })
 
-    // Generate the sequence of strings
-    const result = [];
-    for (let i = startNum; i <= endNum; i++) {
-        result.push(`${prefix}${i}`);
-    }
+//     // Generate the sequence of strings
+//     const result = [];
+//     for (let i = startNum; i <= endNum; i++) {
+//         result.push(`${prefix}${i}`);
+//     }
 
-    //extracting groups if any
+//     //extracting groups if any
 
-    const groupsId = await (await SubGroup.find({ name : {$in : result}}))
-    const groups = groupsId.map((obj) => {
-        return obj.name
-    })
-    lectureGroup.subGroup = []
-    if(groups)
-    {
-        for(let i = 0; i<groups.length; i++)
-        {
-            lectureGroup.subGroup.push(groups[i])
-        }
-    }
-    console.log(lectureGroup)
+//     const groupsId = await (await SubGroup.find({ name : {$in : result}}))
+//     const groups = groupsId.map((obj) => {
+//         return obj.name
+//     })
+//     lectureGroup.subGroup = []
+//     if(groups)
+//     {
+//         for(let i = 0; i<groups.length; i++)
+//         {
+//             lectureGroup.subGroup.push(groups[i])
+//         }
+//     }
+//     console.log(lectureGroup)
 
-    //saving the lecture group
+//     //saving the lecture group
     
-    lectureGroup.save()
-    .then(obj => {
-        console.log('Lecture Group Posted : ', obj)
-    })
-    .catch(err =>{
-        console.log('Error in inserting')
-        return res.send('Error in Inserting')
-    })
-    return res.send('Lecture Group Posted')
-}
+//     lectureGroup.save()
+//     .then(obj => {
+//         console.log('Lecture Group Posted : ', obj)
+//     })
+//     .catch(err =>{
+//         console.log('Error in inserting')
+//         return res.send('Error in Inserting')
+//     })
+//     return res.send('Lecture Group Posted')
+// }
 
 //manually adding a new subgroup to the lecture Group
 const addSubgroupToLecturegroup = async (req, res) =>{
@@ -159,4 +158,4 @@ const postAnnouncementLecture = async (req, res) =>{
     return res.render('lecturegroup/postAnnouncement', {status : 1, user : student})
 }
 
-module.exports = {postAnnouncementLecture, postQueryLecture, getsubGroup, postLectureGroup, addSubgroupToLecturegroup}
+module.exports = {postAnnouncementLecture, postQueryLecture, getsubGroup, addSubgroupToLecturegroup}

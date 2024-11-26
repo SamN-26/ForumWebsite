@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Student = require('../models/students')
 const SubGroup = require('../models/subGroup')
 const AuthService = require('../service/auth')
+const { subgroupExistCheck } = require('../helper')
 
 //function to post a new Student
 const postStudentInfo = async (req, res) =>{
@@ -53,12 +54,35 @@ const getStudentFromRollNo = async(req, res) =>{
 
 const updateStudentDetails = async (req, res) =>{
     console.log(req.body)
+
+    const targetstudent = await Student.findOne({rollNo : req.body.studentID})
+    const targetOldSubgroup = await SubGroup.findOne({name : targetstudent.subgroup})
+    newStudentArray = targetOldSubgroup.students
+    newStudentArray = newStudentArray.filter(item => item != (targetstudent.rollNo))
+    const oldSubgroup = await SubGroup.updateOne(
+        {name : targetstudent.subgroup},
+        { $set : {students : newStudentArray}},
+        {new : true}
+    )
     const student = await Student.updateOne(
         {rollNo : req.body.studentID},
         { $set : {name : req.body.studentName, subgroup : req.body.studentGroup}},
         {new : true}
     )
-    console.log(student)
+    const newSubgroup = await SubGroup.findOne({name : req.body.studentGroup})
+    newSubgroup.students.push(targetstudent.rollNo)
+
+    newSubgroup.save()
+    .then( () =>{
+        console.log('Updated new Subgroup')
+    })
+    .catch((err) =>{
+        console.log('Error')
+    })
+
+    // console.log(newSubgroup)
+    // console.log(oldSubgroup)
+    // console.log(student)
     return res.json({status : 1})
 }
 

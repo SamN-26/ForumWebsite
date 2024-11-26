@@ -3,6 +3,7 @@ const studentHelper = require('../controllers/student')
 const authMiddlewares = require('../middlewares/auth')
 const Student = require('../models/students')
 const adminHelper = require('../controllers/admin')
+const Initiate = require('../initiate')
 
 const router = express.Router()
 
@@ -12,6 +13,9 @@ router.route('/')
     console.log(student)
     return res.render('forum', {user : student})
 })
+
+// router.route('/initiate')
+// .get(Initiate.initiateSubgroup)
 
 router.route('/login/admin')
 .get( (req ,res) =>{

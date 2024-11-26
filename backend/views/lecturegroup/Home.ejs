@@ -46,7 +46,7 @@
                 <p><%= announcement.content.body %></p>
               </div>
               <div class="card-footer">
-                <% if (announcement.postedBy === user.rollNo || user.gr) { %>
+                <% if (user.cr) { %>
                   <button class="delete-btn" data-id="<%= announcement._id %>">
                     🗑️ Delete
                   </button>

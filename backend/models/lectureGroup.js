@@ -18,9 +18,6 @@ const lectureGroupSchema = new mongoose.Schema({
     branch : {
         type : String,
     },
-    passoutYear : {
-        type : Number,
-    }
 })
 
 const lectureGroup = mongoose.model('lectureGroup', lectureGroupSchema)
