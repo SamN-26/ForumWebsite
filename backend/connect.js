@@ -11,7 +11,7 @@ async function attemptConnection(){
   connectToMongo()
   .then( () => {console.log('Connected to Mongo')})
   .catch((err) => {
-  console.log('Error on Connecting to mongo')
+  console.log('Error on Connecting to mongo', err)
   console.log('Retrying ...')
   setTimeout(attemptConnection, 1000);
   }) 
