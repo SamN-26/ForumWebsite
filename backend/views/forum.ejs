@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forum</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <div class="container">
+    <!-- Left Sidebar -->
+    <nav class="sidebar">
+      <div class="user-info">
+        <h3>Branch: <span id="branch">Computer Science</span></h3>
+        <h4>Name: <span id="name"><%= user.name%></span></h1>
+        <p>Roll No: <span id="rollNo"><%= user.rollNo %></span></p>
+        <p>Lecture Group: <span id="lectureGroup"><%= user.lecturegroup %></span></p>
+        <p>Subgroup: <span id="subGroup"><%= user.subgroup %></span></p>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/lecturegroup">Lecture Group</a></li>
+        <li><a href="/subgroup">Subgroup</a></li>
+      </ul>
+      <!-- Sign-Out Button in Sidebar -->
+      <form id="signOutForm" action="/signout" method="POST" style="display:inline;">
+        <button type="submit" id="signOutBtn" class="signout-btn">Sign Out</button>
+      </form> 
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <!-- Announcements Section -->
+      <section class="announcements card">
+        <h2>Announcements</h2>
+        <p>No new announcements for now.</p>
+      </section>
+
+      <!-- Community Chat Section -->
+      <section class="community-chat card">
+        <h2>Community Chat</h2>
+        <div class="chat-box" id="chatBox">
+          <p><strong>Student:</strong> Did anyone get the lecture notes?</p>
+        </div>
+        <input type="text" id="chatInput" placeholder="Type a message...">
+        <button id="sendChat">Send</button>
+      </section>
+    </div>
+  </div>
+  <div id="particles-js"></div>
+
+  <script src="/js/scripts.js"></script>
+</body>
+</html>

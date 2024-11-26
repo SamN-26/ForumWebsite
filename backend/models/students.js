@@ -8,19 +8,27 @@ const studentSchema = new mongoose.Schema({
     rollNo : {
         type : String,
         //required : true,
+        unique : true,
     },
     email : {
         type : String,
         //required : true,
+        unique : true,
     },
     password : {
         type : String,
         //required : true,
     },
     subgroup : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'subGroup'
-    }
+        type : String,
+    },
+    lecturegroup : {
+        type : String,
+    },
+    // starredQueries :{
+    //     type : [mongoose.Schema.Types.ObjectId],
+    //     ref : 'comments'
+    // }
 })
 
 const Student = mongoose.model('student', studentSchema);

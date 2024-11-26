@@ -3,16 +3,12 @@ const helper = require('../helper')
 
 const subGroupSchema = new mongoose.Schema({
     students : {
-        type : [mongoose.Schema.Types.ObjectId],
-        ref : 'student',
-        validate : {
-            validator : helper.ValidateuniqueValueArray,
-            message : 'Students already Exists',
-        }
+        //rollNo
+        type : [String],
     },
     gr : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'student'
+        //Roll no
+        type : String,
     },
     name : {
         type : String, 

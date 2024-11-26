@@ -1,0 +1,220 @@
+/* General Comment Section */
+.comment-section {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+}
+
+.comment-section:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Comment List */
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.comment-list li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-list li:hover {
+    background-color: #f1f5f9;
+}
+
+/* Comment Author and Text */
+.comment-list li strong {
+    color: #34495e;
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}
+
+.comment-list li p {
+    margin: 0;
+    color: #2d3436;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Nested Comments */
+.comment-list li .nested-comments {
+    margin-left: 20px;
+    margin-top: 10px;
+    border-left: 2px solid #dfe6e9;
+    padding-left: 15px;
+}
+
+/* Add Comment Section */
+.comment-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #dfe6e9;
+    border-radius: 5px;
+    resize: none;
+    font-size: 0.9rem;
+}
+
+.comment-input:focus {
+    border-color: #74b9ff;
+    box-shadow: 0 0 8px rgba(116, 185, 255, 0.5);
+    outline: none;
+}
+
+/* Add Comment Button */
+.add-comment-btn {
+    background-color: #2ecc71;
+    color: #ffffff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-comment-btn:hover {
+    background-color: #27ae60;
+    transform: scale(1.05);
+}
+
+.add-comment-btn:active {
+    transform: scale(1);
+}
+
+/* Comment Button */
+.comment-btn {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+}
+
+.comment-btn:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+.comment-btn:active {
+    transform: scale(1);
+}
+
+/* Upvote Button for Comments */
+.comment-upvote {
+    background: transparent;
+    border: none;
+    color: #ff7675;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.comment-upvote:hover {
+    color: #d63031;
+    transform: translateY(-2px);
+}
+
+.comment-upvote span {
+    margin-left: 5px;
+    font-size: 0.8rem;
+    color: #636e72;
+}
+
+/* Highlighting New Comments */
+.new-comment {
+    animation: highlight 1.5s ease-out;
+}
+
+@keyframes highlight {
+    from {
+        background-color: #dff9fb;
+    }
+    to {
+        background-color: #ffffff;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .comment-section {
+        padding: 10px;
+    }
+
+    .comment-list li {
+        padding: 8px;
+    }
+
+    .comment-input {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    .add-comment-btn,
+    .comment-btn {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+
+    .comment-upvote {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .comment-section {
+        padding: 8px;
+    }
+
+    .comment-list li {
+        padding: 6px;
+    }
+
+        /* Add Comment Section */
+    .comment-input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #dfe6e9;
+        border-radius: 5px;
+        resize: none;
+        font-size: 0.9rem;
+        box-sizing: border-box; /* Ensure padding and border are included in the width/height */
+    }
+
+    .comment-input:focus {
+        border-color: #74b9ff;
+        box-shadow: 0 0 8px rgba(116, 185, 255, 0.5);
+        outline: none;
+    }
+
+
+    .add-comment-btn,
+    .comment-btn {
+        font-size: 0.75rem;
+        padding: 5px 8px;
+    }
+
+    .comment-upvote {
+        font-size: 0.7rem;
+    }
+}

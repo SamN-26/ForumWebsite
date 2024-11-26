@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture Group</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/comments.css">
+  <link rel="stylesheet" href="/css/announcements-query.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Left Sidebar -->
+    <nav class="sidebar">
+      <div class="user-info">
+        <h3>Branch: <span id="branch">Computer Science</span></h3>
+        <h4>Name: <span id="name"><%= user.name%></span></h1>
+        <p>Roll No: <span id="rollNo"><%= user.rollNo%></span></p>
+        <p>Lecture Group: <span id="lectureGroup"><%= user.lecturegroup %></span></p>
+        <p>Subgroup: <span id="subGroup"><%= user.subgroup %></span></p>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/lecturegroup">Announcements</a></li>
+        <li><a href="/lecturegroup/queries">Queries</a></li>
+        <li><a href="/lecturegroup/post-query">Post a Query</a></li>
+        <% if (user.cr) { %>
+          <li><a href="/lecturegroup/post-announcement" class="btn btn-primary">Post Announcement</a></li>
+        <% } %>
+      </ul>
+    </nav>
+
+    <!-- Placeholder for future content -->
+    <main class="main-content">
+      <section class="announcements-query">
+        <h2>Queries</h2>
+        <% if (queries && queries.length > 0) { %>
+          <% queries.forEach(query => { %>
+            <div class="announcement-query-card">
+              <div class="card-header">
+                <h3><%= query.content.title %></h3>
+                <p class="author-info">
+                  Posted by: <strong><%= query.postedBy %></strong> 
+                </p>
+              </div>
+              <div class="card-body">
+                <p><%= query.content.body %></p>
+              </div>
+              <div class="card-footer">
+                <!-- Upvote Button -->
+                <% if (query.content.upvotedBy.includes(user.rollNo)) { %>
+                  <button class="upvoted-btn" data-id="<%= query._id%>">Upvoted</button>
+                <% } else { %>
+                  <button class="upvote-btn" data-id="<%= query._id %>">▲ Upvote</button>
+                <% } %>
+                <span class="upvotes" id="upvotes-<%= query._id %>"><%= query.content.upvotes %> Upvotes</span>
+                <!-- Comment Button -->
+                <button class="comment-btn" data-id="<%= query._id %>">💬 Comments</button>
+                <span class="comments"><%= query.content.comments.length %> Comments</span>
+                <% if (query.postedBy === user.rollNo || user.gr) { %>
+                  <button class="delete-btn" data-id="<%= query._id %>">
+                    🗑️ Delete
+                  </button>
+                <% } %>
+              </div>
+              <!-- Comment Section -->
+              <div class="comment-section" id="comments-<%= query._id %>" style="display: none;">
+                <ul class="comment-list" id="comment-list-<%= query._id %>">
+
+                </ul>
+                <!-- Add a New Comment -->
+                <textarea 
+                  class="comment-input" 
+                  id="comment-input-<%= query._id %>" 
+                  placeholder="Add a comment..."
+                ></textarea>
+                <button class="add-comment-btn" data-id="<%= query._id %>">Add Comment</button>
+              </div>
+            </div>                     
+           <% }) %>
+        <% } else { %>
+          <p>No queries available at the moment. Check back later!</p>
+        <% } %>
+      </section>
+    </main>
+  </div>
+  <script>
+    //  console.log('<%- JSON.stringify(user) %>');
+      window.user = <%- JSON.stringify(user) %>
+  </script>
+  <script src="/js/query.js"></script>
+</body>
+</html>

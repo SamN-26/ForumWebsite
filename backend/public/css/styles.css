@@ -1,0 +1,225 @@
+/* Reset and Base Styles */
+/* Background Animation */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #dfe9f3, #f1f5f9); /* Static fallback */
+    background-size: 300% 300%; /* Allow large gradients for animation */
+    animation: gradientBG 8s ease infinite; /* Infinite gradient shift */
+}
+
+/* Gradient Keyframe Animation */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Container for Sidebar and Main Content */
+.container {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background: linear-gradient(135deg, #1abc9c, #2c3e50); /* Gradient */
+    color: white;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #1a252f;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif; /* Clean, modern font */
+}
+
+.user-info h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ecf0f1;
+    margin-bottom: 5px;
+}
+
+.user-info p {
+    font-size: 1rem;
+    color: #bdc3c7;
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    margin: 10px 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: block;
+    transition: background 0.4s ease, transform 0.2s ease;
+}
+
+.nav-links a:hover {
+    background-color: #16a085;
+    transform: translateY(-3px);
+}
+
+/* Main Content Styling */
+.main-content {
+    flex: 1;
+    padding: 30px;
+    /* Removed background and border-radius to keep animation visible */
+    margin: 15px;
+    box-shadow: none; /* Remove shadow */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 2; /* Keep above particles */
+}
+
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #34495e;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Vertical Layout for Main Sections */
+.main-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Vertical spacing between sections */
+}
+
+/* Card Style for Announcements and Chat */
+
+.card {
+    background: linear-gradient(135deg, #7eb4b2, #7693a1); /* Light gradient to match theme */
+    border-radius: 12px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); /* Subtle depth */
+    padding: 20px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Animation on Cards */
+.card:hover {
+    transform: translateY(-5px); /* Lift effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+/* Card Title Styling */
+.card h2 {
+    color: #34495e;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #dcdde1;
+    padding-bottom: 5px;
+}
+
+/* Background color for the Chat Box inside cards */
+.chat-box {
+    flex: 1;
+    background: #f9fbfc; /* Light background for better contrast */
+    padding: 10px;
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle inset shadow */
+}
+
+#chatInput {
+    width: calc(100% - 70px);
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+#sendChat {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+#sendChat:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Announcements Section */
+.announcements p {
+    font-size: 1rem;
+    color: #ffffff;
+    padding: 5px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .chat-box {
+        height: 250px;
+    }
+
+    #chatInput {
+        width: calc(100% - 50px);
+    }
+}
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Keep it behind the content */
+}
+
+.signout-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .signout-btn:hover {
+    background-color: #e60000;
+  }
+  

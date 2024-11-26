@@ -1,0 +1,96 @@
+.announcements-query {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.7); /* Transparent background to match theme */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.announcements-query h2 {
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  color: #34495e;
+  text-align: center;
+}
+
+.announcement-query-card {
+  background: linear-gradient(135deg, #7eb4b2, #7693a1); /* Matching theme */
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+  margin-bottom: 15px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.announcement-query-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #ffffff;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 5px;
+}
+
+.card-body p {
+  font-size: 1rem;
+  color: #f8f9fa;
+  margin: 10px 0;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  font-size: 0.9em;
+  color: #dfe6e9;
+}
+
+.card-footer button {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 0.9em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.card-footer button:hover {
+  color: #2ecc71;
+  transform: translateY(-2px);
+}
+
+.card-footer .upvotes,
+.card-footer .comments {
+  color: #ffffff;
+  font-size: 0.9em;
+}
+
+.delete-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.delete-btn:hover {
+  background-color: #e63939;
+}
+
+.author-info {
+  flex: 1;
+  font-size: 14px;
+  color: #fff;
+  margin-top: 5px;
+  text-align: right;
+}
+

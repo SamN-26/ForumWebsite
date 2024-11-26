@@ -2,18 +2,10 @@ const mongoose = require('mongoose')
 
 const querySchema = new mongoose.Schema({
     postedBy : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'students',
+        type : String,
     },
     postedIn : {
-        type : {
-            loc : {
-                type : Boolean,
-            },
-            grpId : {
-                type : mongoose.Schema.Types.ObjectId,
-            }
-        }
+        type : String,
     },
     content : {
         _id : false,
@@ -27,6 +19,10 @@ const querySchema = new mongoose.Schema({
             upvotes : {
                 type : Number,
             },
+            upvotedBy: {
+                type : [String],
+                default : [],
+            },
             comments : [{
                 type : mongoose.Schema.Types.ObjectId,
                 ref : 'comments',
@@ -34,6 +30,11 @@ const querySchema = new mongoose.Schema({
         }
     },
 })
+
+querySchema.index(
+    { "content.comments": 1 }, // First parameter: Fields to index
+    { unique: true, partialFilterExpression: { "content.comments": { $exists: true, $not: { $size: 0 } } } } // Second parameter: Index options
+);
 
 const Query = mongoose.model('query', querySchema)
 
