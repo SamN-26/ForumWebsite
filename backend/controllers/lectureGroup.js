@@ -128,13 +128,13 @@ const postQueryLecture = async (req, res) =>{
     })
     .catch( (err)=> {
         console.log('Error in posting Query',err)
-        return res.render('lecturegroup/PostQuery', {user : student, status : 0})
+        return res.render({user : student, status : 0}, '/lecturegroup.post-query')
     })
     console.log(lecturegroup)
     if(lecturegroup.cr == student.rollNo)
         student.cr = 1
     console.log(student)
-    return res.redirect('/lecturegroup/post-query', {status : 1, user : student})
+    return res.redirect({status : 1, user : student}, '/lecturegroup.post-query')
 }
 
 const postAnnouncementLecture = async (req, res) =>{
